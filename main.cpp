@@ -17,7 +17,8 @@ int main()
 	}
 	kek.output();
 	cout << endl;
-	DecimalIP dip;
+	DecimalIP dip = bip.toDecimalIP();
 	dip.output();
+	DecimalIP(kek.toDecimalIP()).output();
 	return 0;
 }

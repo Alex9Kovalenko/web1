@@ -90,7 +90,7 @@ DecimalIP& DecimalIP::operator=(DecimalIP const& o) {	// suspicious implementati
 	return *this;
 }
 
-unsigned char* const DecimalIP::getData() const { return data; }
+//unsigned char const *const DecimalIP::getData() const { return data; }
 
 void DecimalIP::output() const {
 	for (size_t i = 0, version = getVersion(); i < version; i++) {
@@ -102,4 +102,29 @@ void DecimalIP::output() const {
 
 void DecimalIP::swap(DecimalIP& o) {
 	std::swap(data, o.data);
+}
+
+DecimalIP const BinaryIP::toDecimalIP() const {
+	IPVersion version = getVersion();
+	unsigned char* decData = new unsigned char[version];
+	unsigned char tmp = 0u;
+	for (size_t i = 0; i < version; i++) {
+		for (size_t j = 0; j < 8; j++) {
+			tmp += pow(2, 7 - j) * data[i][j];
+		}
+		decData[i] = tmp;
+		tmp = 0u;
+	}
+	DecimalIP dec(version);
+	dec.setData(decData);
+	return dec;
+}
+
+unsigned char* DecimalIP::getData() const {
+	return data;
+}
+
+void DecimalIP::setData(unsigned char* const d) {
+	delete[] data;
+	data = d;
 }
