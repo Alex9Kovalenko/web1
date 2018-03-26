@@ -93,6 +93,8 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="IPAddress.cpp"/>
+    <File Name="IPAddress.h"/>
     <File Name="Error.h"/>
     <File Name="Error.cpp"/>
     <File Name="main.cpp"/>

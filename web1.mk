@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Error.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Error.cpp$(ObjectSuffix) 
 
 
 
@@ -93,6 +93,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix): IPAddress.cpp $(IntermediateDirectory)/IPAddress.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/IPAddress.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix): IPAddress.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix) -MM IPAddress.cpp
+
+$(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix): IPAddress.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix) IPAddress.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
