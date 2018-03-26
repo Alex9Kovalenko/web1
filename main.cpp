@@ -23,8 +23,8 @@ public:
 
 struct BinaryIP : public IPAddress {
 private:
-//	Bit (*data)[8];
-	Bit** data;
+	Bit (*data)[8];
+//	Bit** data;
 //	Byte* data;
 	void swap(BinaryIP&);
 public:
@@ -33,8 +33,8 @@ public:
 	virtual ~BinaryIP();
 	BinaryIP& operator=(BinaryIP const&);
 //	Byte* const getData() const;
-//	Bit (* const getData() const)[8];
-	Bit** const getData() const;
+	Bit (* const getData() const)[8];
+//	Bit** const getData() const;
 	virtual void output() const;
 };
 
@@ -58,13 +58,8 @@ IPVersion const IPAddress::getVersion() const { return version; }
 
 
 //BinaryIP
-BinaryIP::BinaryIP(IPVersion const version) : IPAddress(version), data(new Bit*[version]) {	
+BinaryIP::BinaryIP(IPVersion const version) : IPAddress(version), /*data(new Bit*[version])*/ data(new Bit[version][8]) {	
 	cout << "ctor\n";
-	data[0] = new Bit[version * 8];
-	for (size_t i = 1; i < version; i++) {
-		data[i] = data[i - 1] + 8;
-	}
-	
 	for (size_t i = 0; i < version; i++) {
 		for (size_t j = 0; j < 8; j++) {
 			data[i][j] = (i + j) % 2 ? _0 : _1;
@@ -72,11 +67,9 @@ BinaryIP::BinaryIP(IPVersion const version) : IPAddress(version), data(new Bit*[
 	}
 }
 
-BinaryIP::BinaryIP(BinaryIP const& o) : IPAddress(o.getVersion()), data(new Bit*[getVersion()]) {
-	IPVersion version = getVersion();
-	data[0] = new Bit[version * 8];
-	Bit** oData = o.getData();
-	for (size_t i = 0; i < version; i++) {
+BinaryIP::BinaryIP(BinaryIP const& o) : IPAddress(o.getVersion()), data(new Bit[getVersion()][8]) {
+	Bit const (* const oData)[8] = o.getData();
+	for (size_t i = 0, version = getVersion(); i < version; i++) {
 		for (size_t j = 0; j < 8; j++) {
 			data[i][j] = oData[i][j];
 		}
@@ -84,16 +77,16 @@ BinaryIP::BinaryIP(BinaryIP const& o) : IPAddress(o.getVersion()), data(new Bit*
 }
 
 //Byte* const BinaryIP::getData() const { return data; }
-//Bit (* const BinaryIP::getData() const)[8] { return data; }
-Bit** const BinaryIP::getData() const { return data; }
+Bit (* const BinaryIP::getData() const)[8] { return data; }
+//Bit** const BinaryIP::getData() const { return data; }
 
 BinaryIP::~BinaryIP() {
-	delete[] data[0];
-	delete[] data;	// the trouble is here
+//	delete[] data[0];
+	delete[] data;
 	cout << "dtor\n";
 }
 
-BinaryIP& BinaryIP::operator=(BinaryIP const& o) {
+BinaryIP& BinaryIP::operator=(BinaryIP const& o) {	// suspicious implementation (throw)
 	if (this != &o) {
 		if (getVersion() != o.getVersion()) {
 			throw Error(1, "Cannot assign to an BinaryIP with a different IPVersion!");
@@ -114,6 +107,6 @@ void BinaryIP::output() const {
 			cout << data[i][j];
 		}
 	}
-	cout << "\b\n";
+	cout << "\n";
 }
 	
