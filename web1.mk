@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lekha
-Date                   :=26/03/2018
+Date                   :=27/03/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/TDM-GCC-64/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-64/bin/g++.exe
 CC       := C:/TDM-GCC-64/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-64/bin/as.exe
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Error.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Error.cpp$(ObjectSuffix) $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) 
 
 
 
@@ -93,14 +93,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix): IPAddress.cpp $(IntermediateDirectory)/IPAddress.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/IPAddress.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix): IPAddress.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix) -MM IPAddress.cpp
-
-$(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix): IPAddress.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix) IPAddress.cpp
-
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
@@ -116,6 +108,14 @@ $(IntermediateDirectory)/Error.cpp$(DependSuffix): Error.cpp
 
 $(IntermediateDirectory)/Error.cpp$(PreprocessSuffix): Error.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Error.cpp$(PreprocessSuffix) Error.cpp
+
+$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix): IPAddress.cpp $(IntermediateDirectory)/IPAddress.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/IPAddress.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix): IPAddress.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IPAddress.cpp$(DependSuffix) -MM IPAddress.cpp
+
+$(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix): IPAddress.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IPAddress.cpp$(PreprocessSuffix) IPAddress.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

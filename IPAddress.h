@@ -29,10 +29,11 @@ struct BinaryIP : public IPAddress {
 private:
 	Byte* data;
 	void swap(BinaryIP&);
+//	BinaryIP const& setData(Byte* const);
 protected:
-	Byte const *const getData() const;
+//	Byte const *const getData() const;
 public:
-	explicit BinaryIP(IPVersion const = IPv4);
+	explicit BinaryIP(IPVersion const = IPv4, Byte* const = nullptr);
 	BinaryIP(BinaryIP const&);
 	virtual ~BinaryIP();
 	BinaryIP& operator=(BinaryIP const&);
@@ -41,20 +42,19 @@ public:
 };
 
 struct DecimalIP : public IPAddress {
-	friend DecimalIP const BinaryIP::toDecimalIP() const;
 private:
 	unsigned char* data;
 	void swap(DecimalIP&);
 protected:
-	unsigned char* getData() const;
-	void setData(unsigned char* const);	// dunno why it did not allow me to use <unsigned char const *const>
-public:
 //	unsigned char const *const getData() const;
-	explicit DecimalIP(IPVersion const = IPv4);
+public:
+//	DecimalIP const& setData(unsigned char* const);
+	explicit DecimalIP(IPVersion const = IPv4, unsigned char* const = nullptr);
 	DecimalIP(DecimalIP const&);
 	virtual ~DecimalIP();
 	DecimalIP& operator=(DecimalIP const&);
 	virtual void output() const;
+	BinaryIP const toBinaryIP() const;
 };
 
 #endif	// IPADDRESS_H
