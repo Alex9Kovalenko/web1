@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include "IPAddress.h"
+#include "BinaryIP.h"
+#include "Byte.h"
 
 using std::cout;
 using std::endl;
-
-struct BinaryIP;
 
 struct DecimalIP : public IPAddress {
 private:
@@ -19,8 +19,8 @@ public:
 	virtual ~DecimalIP();
 	DecimalIP& operator=(DecimalIP const&);
 	virtual void output() const;
-	IPAddress* toBinaryIP();
-	IPAddress* toDecimalIP();
+	IPAddress const *const toBinaryIP() const;
+	IPAddress const *const toDecimalIP() const;
 };
 
 #endif	// DECIMALIP_H

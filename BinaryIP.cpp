@@ -1,5 +1,4 @@
 #include "BinaryIP.h"
-#include "DecimalIP.h"
 
 BinaryIP::BinaryIP(Byte* const data) : data(data) {}
 
@@ -47,7 +46,7 @@ void BinaryIP::output() const {
 	}
 }
 
-IPAddress* BinaryIP::toDecimalIP() {
+IPAddress const *const BinaryIP::toDecimalIP() const {
 	unsigned char* decData = nullptr;
 	if (data) {
 		decData = new unsigned char[version];
@@ -63,4 +62,4 @@ IPAddress* BinaryIP::toDecimalIP() {
 	return new DecimalIP(decData);
 }
 
-IPAddress* BinaryIP::toBinaryIP() { return this; }
+IPAddress const *const BinaryIP::toBinaryIP() const { return this; }

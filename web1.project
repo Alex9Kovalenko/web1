@@ -8,6 +8,9 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="Byte.h"/>
+    <File Name="supplemental.cpp"/>
+    <File Name="supplemental.h"/>
     <File Name="DecimalIP.cpp"/>
     <File Name="BinaryIP.cpp"/>
     <File Name="DecimalIP.h"/>

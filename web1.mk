@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/supplemental.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) 
 
 
 
@@ -93,6 +93,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/supplemental.cpp$(ObjectSuffix): supplemental.cpp $(IntermediateDirectory)/supplemental.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/supplemental.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/supplemental.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/supplemental.cpp$(DependSuffix): supplemental.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/supplemental.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/supplemental.cpp$(DependSuffix) -MM supplemental.cpp
+
+$(IntermediateDirectory)/supplemental.cpp$(PreprocessSuffix): supplemental.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/supplemental.cpp$(PreprocessSuffix) supplemental.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp

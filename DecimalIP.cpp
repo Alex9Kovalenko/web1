@@ -1,5 +1,4 @@
 #include "DecimalIP.h"
-#include "BinaryIP.h"
 
 DecimalIP::DecimalIP(unsigned char* const data) : data(data) {}
 
@@ -43,7 +42,7 @@ void DecimalIP::swap(DecimalIP& o) {
 	std::swap(data, o.data);
 }
 
-IPAddress* DecimalIP::toBinaryIP() {
+IPAddress const *const DecimalIP::toBinaryIP() const {
 	Byte* binData = nullptr;
 	if (data) {
 		Byte tmp;
@@ -67,4 +66,4 @@ IPAddress* DecimalIP::toBinaryIP() {
 	return new BinaryIP(binData);
 }
 
-IPAddress* DecimalIP::toDecimalIP() { return this; }
+IPAddress const *const DecimalIP::toDecimalIP() const { return this; }

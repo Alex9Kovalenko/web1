@@ -4,14 +4,11 @@
 #include <iostream>
 #include <math.h>
 #include "IPAddress.h"
+#include "DecimalIP.h"
+#include "Byte.h"
 
 using std::cout;
 using std::endl;
-
-enum Bit { _0 = 0, _1 = 1 };
-typedef Bit Byte[8];	// Byte is an array of 8 Bits
-
-struct DecimalIP;
 
 struct BinaryIP : public IPAddress {
 private:
@@ -23,8 +20,8 @@ public:
 	virtual ~BinaryIP();
 	BinaryIP& operator=(BinaryIP const&);
 	virtual void output() const;
-	IPAddress* toDecimalIP();
-	IPAddress* toBinaryIP();
+	IPAddress const *const toDecimalIP() const;
+	IPAddress const *const toBinaryIP() const;
 };
 
 #endif	// BINARYIP_H
