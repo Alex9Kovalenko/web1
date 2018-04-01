@@ -47,7 +47,7 @@ void BinaryIP::output() const {
 	}
 }
 
-DecimalIP const BinaryIP::toDecimalIP() const {
+IPAddress* BinaryIP::toDecimalIP() {
 	unsigned char* decData = nullptr;
 	if (data) {
 		decData = new unsigned char[version];
@@ -60,7 +60,7 @@ DecimalIP const BinaryIP::toDecimalIP() const {
 			tmp = 0u;
 		}
 	}
-	return DecimalIP(decData);
+	return new DecimalIP(decData);
 }
 
-BinaryIP const BinaryIP::toBinaryIP() const { return *this; }
+IPAddress* BinaryIP::toBinaryIP() { return this; }

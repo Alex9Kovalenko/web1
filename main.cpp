@@ -8,12 +8,12 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-DecimalIP* const createDecIP(char const *const);
-BinaryIP* const createBinIP(char const *const);
+IPAddress* const createDecIP(char const *const);
+IPAddress* const createBinIP(char const *const);
 int const str2int(char const *const, int const, int const);
 Bit* const str2byte(char const *const, int const, int const);
 void enterIP(char* const, char const *const);
-void convertIP(IPAddress* const (*)(char const *const), IPAddress const (IPAddress::*)() const, char const *const);
+void convertIP(IPAddress*, char const *const, IPAddress* const (*)(char const *const), IPAddress* (IPAddress::*)(), char const *const);
 
 int main() {
 	IPAddress* ip = nullptr;
@@ -29,20 +29,11 @@ int main() {
 		switch (cin.get()) {
 		case '1' :
 			enterIP(buffer, "DecimalIP");
-//			if (ip = createDecIP(buffer)) {
-//				cout << "Converted to BinaryIP: ";
-//				ip->toBinaryIP().output();
-//				delete ip;
-//			} else cout << "Incorrect input!\n";
-			convertIP(createDecIP(buffer), IPAddress::toBinaryIP(), "BinaryIP");
+			convertIP(ip, buffer, &createDecIP, &IPAddress::toBinaryIP, "BinaryIP");
 			break;
 		case '2' :
 			enterIP(buffer, "BinaryIP");
-			if (ip = createBinIP(buffer)) {
-				cout << "Converted to DecimalIP: ";
-				ip->toDecimalIP().output();
-				delete ip;
-			} else cout << "Incorrect input!\n";
+			convertIP(ip, buffer, &createBinIP, &IPAddress::toDecimalIP, "DecimalIP");
 			break;
 		case '0' :
 			flag = false;
@@ -56,7 +47,7 @@ int main() {
 	return 0;
 }
 
-DecimalIP* const createDecIP(char const *const src) {
+IPAddress* const createDecIP(char const *const src) {
 	size_t fromIndex = 0;
 	size_t toIndex = 0;
 	int tmp = 0;
@@ -92,7 +83,7 @@ DecimalIP* const createDecIP(char const *const src) {
 }
 		
 		
-BinaryIP* const createBinIP(char const *const src) {
+IPAddress* const createBinIP(char const *const src) {
 	size_t fromIndex = 0;
 	size_t toIndex = 0;
 	Bit* tmp;
@@ -169,11 +160,14 @@ void enterIP(char* const buffer, char const *const name) {
 	buffer[bufferSize] = '\0';
 }
 
-void convertIP(IPAddress* const (*create1IP)(char const *const src), IPAddress const (IPAddress::*to2IP)() const, char const *const name2IP) {
-	IPAddress* ip = nullptr;
+void convertIP(IPAddress* ip, char const *const buffer, IPAddress* const (*create1IP)(char const *const src),
+			   IPAddress* (IPAddress::*to2IP)(), char const *const name2IP) {
+	IPAddress* another = nullptr;
 	if (ip = (*create1IP)(buffer)) {
+		another = (ip->*to2IP)();
 		cout << "Converted to " << name2IP << " : ";
-		ip->(*to2IP)().output();
+		another->output();
 		delete ip;
+		delete another;
 	} else cout << "Incorrect input!\n";
 }

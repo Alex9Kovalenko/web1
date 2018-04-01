@@ -19,8 +19,8 @@ public:
 	virtual ~DecimalIP();
 	DecimalIP& operator=(DecimalIP const&);
 	virtual void output() const;
-	BinaryIP const toBinaryIP() const;
-	DecimalIP const toDecimalIP() const;
+	IPAddress* toBinaryIP();
+	IPAddress* toDecimalIP();
 };
 
 #endif	// DECIMALIP_H

@@ -23,8 +23,8 @@ public:
 	virtual ~BinaryIP();
 	BinaryIP& operator=(BinaryIP const&);
 	virtual void output() const;
-	DecimalIP const toDecimalIP() const;
-	BinaryIP const toBinaryIP() const;
+	IPAddress* toDecimalIP();
+	IPAddress* toBinaryIP();
 };
 
 #endif	// BINARYIP_H

@@ -13,8 +13,8 @@ public:
 	IPAddress(IPAddress const&);
 	virtual ~IPAddress();
 	virtual void output() const = 0;
-	virtual DecimalIP const toDecimalIP() const = 0;
-	virtual BinaryIP const toBinaryIP() const = 0;
+	virtual IPAddress* toDecimalIP() = 0;
+	virtual IPAddress* toBinaryIP() = 0;
 };
 
 #endif	// IPADDRESS_H
