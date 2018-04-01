@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lekha
-Date                   :=27/03/2018
+Date                   :=01/04/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/TDM-GCC-64/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-64/bin/g++.exe
 CC       := C:/TDM-GCC-64/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -std=c++11 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++17 -std=c++14 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-64/bin/as.exe
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Error.cpp$(ObjectSuffix) $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix) $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) 
 
 
 
@@ -101,13 +101,21 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
-$(IntermediateDirectory)/Error.cpp$(ObjectSuffix): Error.cpp $(IntermediateDirectory)/Error.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/Error.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Error.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Error.cpp$(DependSuffix): Error.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Error.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Error.cpp$(DependSuffix) -MM Error.cpp
+$(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix): DecimalIP.cpp $(IntermediateDirectory)/DecimalIP.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/DecimalIP.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/DecimalIP.cpp$(DependSuffix): DecimalIP.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DecimalIP.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DecimalIP.cpp$(DependSuffix) -MM DecimalIP.cpp
 
-$(IntermediateDirectory)/Error.cpp$(PreprocessSuffix): Error.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Error.cpp$(PreprocessSuffix) Error.cpp
+$(IntermediateDirectory)/DecimalIP.cpp$(PreprocessSuffix): DecimalIP.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DecimalIP.cpp$(PreprocessSuffix) DecimalIP.cpp
+
+$(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix): BinaryIP.cpp $(IntermediateDirectory)/BinaryIP.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/BinaryIP.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BinaryIP.cpp$(DependSuffix): BinaryIP.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BinaryIP.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BinaryIP.cpp$(DependSuffix) -MM BinaryIP.cpp
+
+$(IntermediateDirectory)/BinaryIP.cpp$(PreprocessSuffix): BinaryIP.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BinaryIP.cpp$(PreprocessSuffix) BinaryIP.cpp
 
 $(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix): IPAddress.cpp $(IntermediateDirectory)/IPAddress.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/WorkSpace/web1/IPAddress.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IPAddress.cpp$(ObjectSuffix) $(IncludePath)

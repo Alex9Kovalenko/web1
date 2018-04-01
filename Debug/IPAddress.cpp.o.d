@@ -1,5 +1,3 @@
-Debug/IPAddress.cpp.o: IPAddress.cpp IPAddress.h Error.h
+Debug/IPAddress.cpp.o: IPAddress.cpp IPAddress.h
 
 IPAddress.h:
-
-Error.h:

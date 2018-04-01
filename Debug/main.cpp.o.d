@@ -1,5 +1,7 @@
-Debug/main.cpp.o: main.cpp Error.h IPAddress.h
+Debug/main.cpp.o: main.cpp BinaryIP.h IPAddress.h DecimalIP.h
 
-Error.h:
+BinaryIP.h:
 
 IPAddress.h:
+
+DecimalIP.h:
